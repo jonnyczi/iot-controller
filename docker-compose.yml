@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  iot-api:
+    build: iot-api/.
+    command: yarn start
+    depends_on:
+      - iot-queue
+    env_file:
+      - iot-api/.env
+    ports:
+      - '8080:80'
+      - '8443:443'
+    volumes:
+      - ./iot-api:/opt/app
+  iot-queue:
+    image: redis:alpine

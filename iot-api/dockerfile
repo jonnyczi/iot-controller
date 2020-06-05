@@ -1,0 +1,13 @@
+FROM node:12-alpine
+
+EXPOSE 80
+EXPOSE 443
+
+RUN mkdir -p /opt/app && mkdir /opt/.cache
+WORKDIR /opt/app
+
+COPY . .
+
+RUN yarn
+
+RUN yarn build
